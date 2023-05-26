@@ -3,7 +3,7 @@ import LoginScreen from './components/LoginScreen'
 import Navigation from './components/Navigation'
 
 const MainComponent = () => {
-    const [isLogin,setIsLogin] = useState(true)
+    const [isLogin,setIsLogin] = useState(false)
     return (
         <>
         {isLogin ? <Navigation /> : <LoginScreen />}

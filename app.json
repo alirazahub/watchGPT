@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "RecruiterApp",
-    "slug": "RecruiterApp",
+    "name": "watchGPT",
+    "slug": "watchGPT",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/RecruiterApp.png",
+    "icon": "./assets/watchgpt.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/RecruiterApp.png",
+      "image": "./assets/watchgpt.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/RecruiterApp.png",
+        "foregroundImage": "./assets/watchgpt.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/RecruiterApp.png"
+      "favicon": "./assets/watchgpt.png"
     }
   }
 }
