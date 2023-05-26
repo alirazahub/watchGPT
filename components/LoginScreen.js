@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     color: 'blue',
     textDecorationLine: 'underline',
     marginTop: 8,
-    justifyContent: 'end',
   },
 });
 
