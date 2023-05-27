@@ -1,14 +1,15 @@
-import * as React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text, FlatList } from "react-native";
 import { TextInput, IconButton, Button } from "react-native-paper";
 import { useEffect } from "react";
 import useApiCall from "./utilities/GetDataFromChatGPT";
 
 function API_Testing() {
- 
-  const [text, setText] = React.useState("IT");
- 
- const { fetchData } = useApiCall();
+
+  const [text, setText] = React.useState("John Wick 4");
+  const [data, setData] = useState([]);
+
+  const { fetchData } = useApiCall();
 
   const handleTextChange = (inputText) => {
     setText(inputText);
@@ -18,32 +19,38 @@ function API_Testing() {
     console.log("Icon pressed")
   };
 
-  const handleButtonPress = async () => {
-  let new_text = text.trim();
-  if (new_text.length > 0) {
-    try {
-     const newData = await fetchData(new_text);
-      console.log(newData); 
-     
-    } catch (error) {
-      console.error(error);
-    }
-  } else {
-    return;
+  function addNamesToArray(namesString) {
+    const namesArray = namesString.split(',').map(name => name.trim());
+    return namesArray;
   }
-};
+
+  const handleButtonPress = async () => {
+    let new_text = text.trim();
+    if (new_text.length > 0) {
+      try {
+        const newData = await fetchData(new_text);
+        console.log(newData);
+        setData(addNamesToArray(newData));
+
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      return;
+    }
+  };
 
 
-  
 
- 
+
+
 
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
-          
-          
+
+
           placeholder="Enter text here"
           value={text}
           onChangeText={handleTextChange}
@@ -64,6 +71,8 @@ function API_Testing() {
       >
         Press me
       </Button>
+      <FlatList data={data} renderItem={({ item }) => <Text>{item}</Text>} />
+
     </View>
   );
 }
