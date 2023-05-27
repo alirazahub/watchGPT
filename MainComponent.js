@@ -1,12 +1,13 @@
 import React,{useState} from 'react'
 import LoginScreen from './components/LoginScreen'
 import Navigation from './components/Navigation'
+import API_Testing from './components/API_Testing'
 
 const MainComponent = () => {
-    const [isLogin,setIsLogin] = useState(false)
+    const [isLogin,setIsLogin] = useState(true)
     return (
         <>
-        {isLogin ? <Navigation /> : <LoginScreen />}
+        {isLogin ? <API_Testing /> : <LoginScreen />}
         </>
     )
 }
