@@ -11,7 +11,8 @@ const getByName = (name) => {
     fetch(url, options)
         .then(res => res.json())
         .then(json => {
-            console.log(json.results[0]);
+            const data = json.results[0];
+            return data;
         })
         .catch(err => console.error('error:' + err));
 }
@@ -27,7 +28,7 @@ const getRecommendations = (id) => {
 
     fetch(url, options)
         .then(res => res.json())
-        .then(json => console.log(json))
+        .then(json => (json.results))
         .catch(err => console.error('error:' + err));
 }
 
@@ -43,7 +44,7 @@ const getReviews = (id) => {
 
     fetch(url, options)
         .then(res => res.json())
-        .then(json => console.log(json))
+        .then(json => (json.stringify()))
         .catch(err => console.error('error:' + err));
 }
 
@@ -59,9 +60,36 @@ const getActors = (id) => {
 
     fetch(url, options)
         .then(res => res.json())
-        .then(json => console.log(json))
+        .then(json => (json))
         .catch(err => console.error('error:' + err));
 }
 const getImage = (path) => {
-    const url = `https://image.tmdb.org/t/p/original${path}`;
+    const url = `https://image.tmdb.org/t/p/w500${path}`;
+    return url;
 }
+
+const getMovieDetails = (name) => {
+    // try {
+    //     const data = getByName(name);
+    //     if (!data.id) {
+    //         return;
+    //     };
+
+    //     movie = {
+    //         id: data.id,
+    //         title: data.original_title,
+    //         overview: data.overview,
+    //         poster: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
+    //         backdrop: `https://image.tmdb.org/t/p/w500${data.backdrop_path}`,
+    //         rating: data.vote_average,
+    //         release: data.release_date,
+    //         genres: data.genre_ids,
+    //         language: data.original_language,
+    //     }
+    //     return movie;
+    // } catch (error) {
+    //     console.log(error.message)
+    // }
+}
+
+export { getByName, getRecommendations, getReviews, getActors, getImage, getMovieDetails }

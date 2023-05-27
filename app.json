@@ -4,10 +4,10 @@
     "slug": "watchGPT",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/watchgpt.png",
+    "icon": "",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/watchgpt.png",
+      "image": "",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/watchgpt.png",
+        "foregroundImage": "",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/watchgpt.png"
+      "favicon": ""
     }
   }
 }

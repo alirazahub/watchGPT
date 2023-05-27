@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import { TextInput, IconButton, Button } from "react-native-paper";
 import useApiCall from "./utilities/GetDataFromChatGPT";
+import MoviesContext from "../contexts/MoviesContext";
+import MoviesListContainer from "./MoviesListContainer";
 
 function API_Testing() {
 
   const [text, setText] = React.useState("");
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { movies, setMovies } = useContext(MoviesContext);
 
   const { fetchData } = useApiCall();
 
@@ -18,6 +20,7 @@ function API_Testing() {
   const handleIconPress = () => {
     console.log("Icon pressed")
   };
+
 
   function addNamesToArray(namesString) {
     const namesArray = namesString.split(',').map(name => name.trim());
@@ -30,8 +33,7 @@ function API_Testing() {
     if (new_text.length > 0) {
       try {
         const newData = await fetchData(new_text);
-        console.log(newData);
-        setData(addNamesToArray(newData));
+        setMovies(addNamesToArray(newData));
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -41,11 +43,6 @@ function API_Testing() {
     }
 
   };
-
-
-
-
-
 
   return (
     <View style={styles.container}>
@@ -57,14 +54,14 @@ function API_Testing() {
           onChangeText={handleTextChange}
           style={styles.input}
         />
-        <IconButton
-          icon="microphone"
-          size={30}
-          onPress={handleIconPress}
-          color="#694fad"
-          style={styles.iconButton}
-        />
       </View>
+      <IconButton
+        icon="microphone"
+        size={30}
+        onPress={handleIconPress}
+        color="#694fad"
+        style={styles.iconButton}
+      />
       <Button
         loading={loading}
         mode="contained"
@@ -72,8 +69,7 @@ function API_Testing() {
       >
         Press me
       </Button>
-      <FlatList data={data} renderItem={({ item }) => <Text>{item}</Text>} />
-
+      <MoviesListContainer />
     </View>
   );
 }
@@ -82,19 +78,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 50,
     width: "100%",
   },
   inputContainer: {
-    width: "100%",
+    width: "50%",
     flexDirection: "row", // Display TextInput and IconButton in a row
     alignItems: "center", // Align items vertically in the center
     marginBottom: 20,
   },
   input: {
     flex: 1,
-    width: "80%", // Adjust the width of the TextInput
+    width: "100%", // Adjust the width of the TextInput
   },
   iconButton: {
     marginLeft: 10, // Adjust the spacing between TextInput and IconButton
