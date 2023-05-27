@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { TextInput, Button, HelperText } from 'react-native-paper';
-
-// Import your logo image
 import LogoImage from '../assets/icon.png';
+
 
 const LoginScreen = () => {
   const [email, setEmail] = React.useState('');
@@ -16,7 +15,6 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Logo */}
       <View style={styles.logoContainer}>
         <Image source={LogoImage} style={styles.logo} resizeMode="contain" />
         <Text style={styles.title}>My App Title</Text>

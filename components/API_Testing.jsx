@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import { TextInput, IconButton, Button } from "react-native-paper";
-import { useEffect } from "react";
 import useApiCall from "./utilities/GetDataFromChatGPT";
 
 function API_Testing() {
 
-  const [text, setText] = React.useState("John Wick 4");
+  const [text, setText] = React.useState("");
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { fetchData } = useApiCall();
 
@@ -25,19 +25,21 @@ function API_Testing() {
   }
 
   const handleButtonPress = async () => {
+    setLoading(true);
     let new_text = text.trim();
     if (new_text.length > 0) {
       try {
         const newData = await fetchData(new_text);
         console.log(newData);
         setData(addNamesToArray(newData));
-
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
     } else {
       return;
     }
+
   };
 
 
@@ -49,9 +51,8 @@ function API_Testing() {
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
-
-
-          placeholder="Enter text here"
+          label="Enter Prompt"
+          mode="outlined"
           value={text}
           onChangeText={handleTextChange}
           style={styles.input}
@@ -65,7 +66,7 @@ function API_Testing() {
         />
       </View>
       <Button
-        icon="camera"
+        loading={loading}
         mode="contained"
         onPress={handleButtonPress}
       >

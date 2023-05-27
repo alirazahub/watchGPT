@@ -30,7 +30,6 @@ const useApiCall = () => {
         options
       );
       const json = await response.json();
-    //   console.log(json.choices[0].text.trim());
       const extractedData = json.choices[0].text.trim();
       setData(extractedData);
       return extractedData;
