@@ -4,10 +4,10 @@
     "slug": "watchGPT",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/watchgpt.png",
+    "icon": "./assets/black-logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/watchgpt.png",
+      "image": "./assets/black-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +22,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/watchgpt.png",
+        "foregroundImage": "./assets/black-logo.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/watchgpt.png"
+      "favicon": "./assets/black-logo.png"
     }
   }
 }
