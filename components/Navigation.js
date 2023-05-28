@@ -19,7 +19,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Settings"
+        initialRouteName="Home"
         screenOptions={({ route }) => ({
 
           tabBarIcon: ({ focused }) => {
