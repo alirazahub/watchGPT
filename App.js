@@ -2,14 +2,15 @@ import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-
 import MainComponent from './MainComponent';
 import MoviesContext from './contexts/MoviesContext';
 import React, { useState } from 'react';
+import { View } from 'react-native';
 
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'tomato',
-    secondary: 'yellow',
+    primary: '#f69dc8',
+    secondary: '#fa1b86',
   },
 };
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
   return (
     <MoviesContext.Provider value={{ movies, setMovies }}>
       <PaperProvider theme={theme}>
+        <View style={{backgroundColor: "#f69dc8",height:50 }} />
         <MainComponent />
       </PaperProvider>
     </MoviesContext.Provider>

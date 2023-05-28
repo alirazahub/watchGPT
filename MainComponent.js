@@ -8,7 +8,7 @@ const MainComponent = () => {
     const [isLogin, setIsLogin] = useState(true)
     return (
         <>
-            {isLogin ? <API_Testing /> : <LoginScreen />}
+            {isLogin ? <Navigation /> : <LoginScreen />}
         </>
     )
 }
