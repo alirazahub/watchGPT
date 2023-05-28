@@ -1,4 +1,4 @@
-const getByName = (name) => {
+const getByName = async (name) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${name}`;
     const options = {
         method: 'GET',
@@ -8,13 +8,14 @@ const getByName = (name) => {
         }
     };
 
-    fetch(url, options)
-        .then(res => res.json())
-        .then(json => {
-            const data = json.results[0];
-            return data;
-        })
-        .catch(err => console.error('error:' + err));
+    try {
+        const res = await fetch(url, options);
+        const json = await res.json();
+        const data = json.results[0];
+        return data;
+    } catch (err) {
+        throw new Error('Error: ' + err);
+    }
 }
 const getRecommendations = (id) => {
     const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`;
@@ -68,28 +69,4 @@ const getImage = (path) => {
     return url;
 }
 
-const getMovieDetails = (name) => {
-    // try {
-    //     const data = getByName(name);
-    //     if (!data.id) {
-    //         return;
-    //     };
-
-    //     movie = {
-    //         id: data.id,
-    //         title: data.original_title,
-    //         overview: data.overview,
-    //         poster: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
-    //         backdrop: `https://image.tmdb.org/t/p/w500${data.backdrop_path}`,
-    //         rating: data.vote_average,
-    //         release: data.release_date,
-    //         genres: data.genre_ids,
-    //         language: data.original_language,
-    //     }
-    //     return movie;
-    // } catch (error) {
-    //     console.log(error.message)
-    // }
-}
-
-export { getByName, getRecommendations, getReviews, getActors, getImage, getMovieDetails }
+export { getByName, getRecommendations, getReviews, getActors, getImage }
