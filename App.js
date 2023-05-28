@@ -1,8 +1,7 @@
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import MainComponent from './MainComponent';
 import MoviesContext from './contexts/MoviesContext';
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import Authentication from './components/Authentication/Authentication';
 
 
 const theme = {
@@ -19,7 +18,7 @@ export default function App() {
   return (
     <MoviesContext.Provider value={{ movies, setMovies }}>
       <PaperProvider theme={theme}>
-        <MainComponent />
+        <Authentication />
       </PaperProvider>
     </MoviesContext.Provider>
   );
