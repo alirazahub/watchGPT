@@ -19,7 +19,6 @@ export default function App() {
   return (
     <MoviesContext.Provider value={{ movies, setMovies }}>
       <PaperProvider theme={theme}>
-        <View style={{backgroundColor: "#f69dc8",height:50 }} />
         <MainComponent />
       </PaperProvider>
     </MoviesContext.Provider>

@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { View, StyleSheet, Text, FlatList, KeyboardAvoidingView } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-import useApiCall from "../utilities/GetDataFromChatGPT";
-import MoviesContext from "../../contexts/MoviesContext";
-import MoviesListContainer from "../MoviesListContainer";
+import useApiCall from "../../utilities/GetDataFromChatGPT";
+import MoviesContext from "../../../contexts/MoviesContext";
+import MoviesListContainer from "../../MoviesListContainer";
 
-function Home() {
+function Home({ navigation }) {
 
     const [text, setText] = useState("");
     const [loading, setLoading] = useState(false);
@@ -69,6 +69,9 @@ function Home() {
                     <MoviesListContainer />
                 </View>
             </View>
+            <Button onPress={() => navigation.navigate("Detail")}>
+                <Text>Go to Detail</Text>
+            </Button>
         </KeyboardAvoidingView>
     );
 }

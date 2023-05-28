@@ -1,12 +1,12 @@
 import React from 'react'
 import { View,Text } from 'react-native'
 
-const Favourites = () => {
+const Detail = () => {
   return (
     <View>
-        <Text>Favourites</Text>
+        <Text>This is Detailed Page of the Movie</Text>
     </View>
   )
 }
 
-export default Favourites
+export default Detail
