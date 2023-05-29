@@ -89,15 +89,12 @@ const MoviesListContainer = () => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
     width: "100%",
-    height: 320,
-    backgroundColor: "pink",
-    padding: 10,
+    height: 285,
   },
   movieContainer: {
     marginRight: 10,
-    backgroundColor: "orange",
+    backgroundColor: "#f69dc8",
     borderRadius: 10,
     padding: 10,
   },

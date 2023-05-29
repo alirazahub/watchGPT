@@ -1,15 +1,15 @@
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-import MainComponent from './MainComponent';
 import MoviesContext from './contexts/MoviesContext';
 import React, { useState } from 'react';
+import Authentication from './components/Authentication/Authentication';
 
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'tomato',
-    secondary: 'yellow',
+    primary: '#f69dc8',
+    secondary: '#fa1b86',
   },
 };
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <MoviesContext.Provider value={{ movies, setMovies }}>
       <PaperProvider theme={theme}>
-        <MainComponent />
+        <Authentication />
       </PaperProvider>
     </MoviesContext.Provider>
   );
