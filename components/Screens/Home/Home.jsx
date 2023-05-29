@@ -4,6 +4,7 @@ import { TextInput, Button } from "react-native-paper";
 import useApiCall from "../../utilities/GetDataFromChatGPT";
 import MoviesContext from "../../../contexts/MoviesContext";
 import MoviesListContainer from "../../MoviesListContainer";
+import { primaryColor, secondaryColor,backgroundColor } from '../../../colors'
 
 function Home({ navigation }) {
 
@@ -50,6 +51,7 @@ function Home({ navigation }) {
             <View style={styles.container}>
                 <View style={styles.inputContainer}>
                     <TextInput
+                        placeholderTextColor={primaryColor}
                         label="Enter Prompt"
                         mode="outlined"
                         value={text}
@@ -68,10 +70,10 @@ function Home({ navigation }) {
                 <View style={styles.movieContainer}>
                     <MoviesListContainer />
                 </View>
-            </View>
             <Button onPress={() => navigation.navigate("Detail")}>
                 <Text>Go to Detail</Text>
             </Button>
+            </View>
         </KeyboardAvoidingView>
     );
 }
@@ -91,13 +93,13 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         width: "100%",
+        backgroundColor:backgroundColor
     },
     button: {
-        backgroundColor: "#fa1b86",
+        backgroundColor: secondaryColor,
         marginLeft: 10,
     },
     movieContainer: {
-        // marginTop: 120,
         width: "100%",
     }
 });

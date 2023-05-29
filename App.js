@@ -2,21 +2,21 @@ import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-
 import MoviesContext from './contexts/MoviesContext';
 import React, { useState } from 'react';
 import Authentication from './components/Authentication/Authentication';
-
+import { primaryColor,secondaryColor } from './colors';
 
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#f69dc8',
-    secondary: '#fa1b86',
+    primary: secondaryColor,
+    secondary: primaryColor,
   },
 };
 export default function App() {
   const [movies, setMovies] = useState([]);
 
   return (
-    <MoviesContext.Provider value={{ movies, setMovies }}>
+    <MoviesContext.Provider value={{ movies, setMovies}}>
       <PaperProvider theme={theme}>
         <Authentication />
       </PaperProvider>

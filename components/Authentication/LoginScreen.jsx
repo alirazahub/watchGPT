@@ -1,12 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import LogoImage from '../../assets/icon.png';
+import { backgroundColor, secondaryColor } from '../../colors';
 
 
 const LoginScreen = ({ navigation }) => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleLogin = () => {
         console.log('Email:', email);
@@ -22,13 +23,15 @@ const LoginScreen = ({ navigation }) => {
             </View>
 
             <TextInput
-                label="Email"
-                value={email}
-                onChangeText={setEmail}
-                style={styles.input}
+            mode='outlined'
+            label="Email"
+            value={email}
+            onChangeText={setEmail}
+            style={styles.input}
             />
 
             <TextInput
+            mode='outlined'
                 label="Password"
                 value={password}
                 secureTextEntry
@@ -54,6 +57,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
+        backgroundColor:backgroundColor
     },
     logoContainer: {
         alignItems: 'center',
@@ -71,6 +75,7 @@ const styles = StyleSheet.create({
     input: {
         marginBottom: 16,
         width: '100%',
+        backgroundColor:backgroundColor,
     },
     button: {
         marginTop: 16,

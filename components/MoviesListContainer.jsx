@@ -2,11 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList, Image } from 'react-native';
 import MoviesContext from '../contexts/MoviesContext';
 import { getByName, getRecommendations, getReviews, getActors, getImage } from './test/Test';
+import { backgroundColor, primaryColor } from '../colors';
 // import { AiFillStar } from 'react-icons/ai';
-
-
 const MoviesListContainer = () => {
-    const { movies, setMovies } = useContext(MoviesContext);
+    const { movies, setMovies,primaryColor,secondaryColor } = useContext(MoviesContext);
     const [isLoading, setIsLoading] = useState(false);
     const [moviesData, setMoviesData] = useState([]);
 
@@ -84,10 +83,11 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         height: 285,
+        backgroundColor:backgroundColor
     },
     movieContainer: {
         marginRight: 10,
-        backgroundColor: '#f69dc8',
+        backgroundColor: primaryColor,
         borderRadius: 10,
         padding: 10,
     },

@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from './Home/Home';
 import Detail from './Home/Detail';
+import { primaryColor,secondaryColor } from '../../colors'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
@@ -14,18 +15,18 @@ const HomeScreen = () => {
         >
             <Stack.Screen name="Home" component={Home} options={{
                 headerStyle: {
-                    backgroundColor: "#f69dc8",
+                    backgroundColor: primaryColor,
                     height: 80,
                 },
                 headerTitle: ""
             }} />
             <Stack.Screen name="Detail" component={Detail}  options={{
                 headerStyle: {
-                    backgroundColor: "#f69dc8",
+                    backgroundColor: primaryColor,
                     height: 80,
                 },
                 headerTitle: "",
-                headerTintColor: "#fa1b86"
+                headerTintColor: secondaryColor
             }} />
         </Stack.Navigator>
     )
