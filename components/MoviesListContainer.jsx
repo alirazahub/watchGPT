@@ -7,7 +7,7 @@ import {
   getReviews,
   getActors,
   getImage,
-} from "./test/Test";
+} from "./API/api";
 import { backgroundColor, primaryColor } from '../colors';
 // import { AiFillStar } from 'react-icons/ai';
 

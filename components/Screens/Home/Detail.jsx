@@ -42,6 +42,7 @@ function MovieDetail(props) {
       <View style={styles.movieCast}>
         <Text style={styles.movieCastTitle}>Cast</Text>
         <FlatList
+        showsHorizontalScrollIndicator={false}
           data={[
             {
               key: "1",
