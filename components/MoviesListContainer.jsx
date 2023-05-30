@@ -30,8 +30,6 @@ const MoviesListContainer = () => {
             continue;
           }
 
-          console.log(data);
-
           const movie = {
             id: data.id,
             title: data.original_title,
@@ -73,6 +71,7 @@ const MoviesListContainer = () => {
   return (
     <View style={styles.container}>
       <FlatList
+      showsHorizontalScrollIndicator={false}
         data={moviesData}
         keyExtractor={(movie) => movie.id.toString()}
         horizontal={true}
