@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, Image } from "react-native";
+import { StyleSheet, Text, View, FlatList, Image, ScrollView } from "react-native";
 import MoviesContext from "../contexts/MoviesContext";
+import MoviesList from "./MoviesList";
 import {
   getByName,
   getRecommendations,
@@ -12,8 +13,8 @@ import { backgroundColor, primaryColor } from '../colors';
 // import { AiFillStar } from 'react-icons/ai';
 
 
-const MoviesListContainer = () => {
-  const { movies, setMovies } = useContext(MoviesContext);
+const MoviesListContainer = ({ category, movies }) => {
+  // const { movies, setMovies } = useContext(MoviesContext);
   const [isLoading, setIsLoading] = useState(false);
   const [moviesData, setMoviesData] = useState([]);
 
@@ -26,7 +27,7 @@ const MoviesListContainer = () => {
         for (const movieName of movieNames) {
           const data = await getByName(movieName);
 
-          if (!data) {
+          if (!data || !data.id) {
             continue;
           }
 
@@ -53,6 +54,7 @@ const MoviesListContainer = () => {
     };
 
     const fetchMoviesData = async () => {
+      console.log(movies)
       const data = await fetchData(movies);
       setMoviesData(data);
     };
@@ -70,56 +72,18 @@ const MoviesListContainer = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-      showsHorizontalScrollIndicator={false}
-        data={moviesData}
-        keyExtractor={(movie) => movie.id.toString()}
-        horizontal={true}
-        renderItem={({ item: movie }) => (
-          <View style={styles.movieContainer}>
-            <Image source={{ uri: movie.poster }} style={styles.image} />
-            <Text style={styles.movieRating}> {movie.rating}</Text>
-            <Text style={styles.movieTitle}>{movie.title}</Text>
-            <Text style={styles.movieSubtitle}>{movie.release}</Text>
-          </View>
-        )}
-      />
+      <Text style={{ color: primaryColor, fontSize: 20, fontWeight: 'bold', margin: 10 }}>{category}</Text>
+      <MoviesList moviesData={moviesData} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: 285,
-        backgroundColor:backgroundColor
-    },
-    movieContainer: {
-        marginRight: 10,
-        backgroundColor: primaryColor,
-        borderRadius: 10,
-        padding: 10,
-    },
-
-  movieRating: {
-    fontSize: 16,
-    marginTop: 5,
-    marginBottom: 5,
-  },
-
-  movieTitle: {
-    fontSize: 16,
-    fontWeight: "bold",
-    width: 150,
-  },
-
-  movieSubtitle: {
-    fontSize: 16,
-    width: 150,
-  },
-  image: {
-    width: 150,
-    height: 200,
+  container: {
+    width: '100%',
+    height: 350,
+    backgroundColor: backgroundColor,
+    marginBottom: 10,
   },
 });
 

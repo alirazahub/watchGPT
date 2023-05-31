@@ -1,16 +1,20 @@
-import React, { useState, useContext } from "react";
-import { View, StyleSheet, Text, FlatList, KeyboardAvoidingView } from "react-native";
+import React, { useState, useContext, useEffect } from "react";
+import { View, StyleSheet, Text, FlatList, KeyboardAvoidingView, ScrollView } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import useApiCall from "../../utilities/GetDataFromChatGPT";
 import MoviesContext from "../../../contexts/MoviesContext";
 import MoviesListContainer from "../../MoviesListContainer";
-import { primaryColor, secondaryColor,backgroundColor } from '../../../colors'
+import { primaryColor, secondaryColor, backgroundColor } from '../../../colors'
+import { getTrendingMovies } from "../../API/api";
+import MoviesList from "../../MoviesList";
 
 function Home({ navigation }) {
 
     const [text, setText] = useState("");
     const [loading, setLoading] = useState(false);
     const { movies, setMovies } = useContext(MoviesContext);
+    const [categoryArray, setCategoryArray] = useState([]);
+    const [trendingMovies, setTrendingMovies] = useState([]);
 
     const { fetchData } = useApiCall();
 
@@ -23,6 +27,20 @@ function Home({ navigation }) {
         const namesArray = namesString.split(',').map(name => name.trim());
         return namesArray;
     }
+    const addCategoriesToArray = (newData) => {
+        let categoryArray = [];
+        const lines = newData.split('\n');
+
+        lines.forEach((line) => {
+
+            const category = line.substring(0, line.indexOf(':'));
+            const titles = line.substring(line.indexOf(':') + 1).split(';');
+            categoryArray.push({ category: category.trim(), titles: titles.map((title) => title.trim()) });
+        });
+
+        return categoryArray;
+    }
+
 
     const handleButtonPress = async () => {
         setLoading(true);
@@ -30,8 +48,9 @@ function Home({ navigation }) {
         if (new_text.length > 0) {
             try {
                 const newData = await fetchData(new_text);
-                setMovies(addNamesToArray(newData));
+                console.log(newData)
                 setLoading(false);
+                setCategoryArray(addCategoriesToArray(newData));
             } catch (error) {
                 alert("Error fetching data");
                 console.error(error);
@@ -45,10 +64,22 @@ function Home({ navigation }) {
 
     };
 
+    useEffect(() => {
+        const trendingMovieNames = [];
+        const fetchTrendingMovies = async () => {
+            const data = await getTrendingMovies();
+            for (const movie of data.results.slice(0, 5)) {
+                trendingMovieNames.push(movie.title);
+            }
+            setTrendingMovies(trendingMovieNames);
+        };
+        fetchTrendingMovies();
+    }, []);
+
     return (
         <KeyboardAvoidingView>
 
-            <View style={styles.container}>
+            <ScrollView style={styles.container} contentContainerStyle={["alignItems", "justifyContent"]}>
                 <View style={styles.inputContainer}>
                     <TextInput
                         placeholderTextColor={primaryColor}
@@ -68,20 +99,24 @@ function Home({ navigation }) {
                     </Button>
                 </View>
                 <View style={styles.movieContainer}>
-                    <MoviesListContainer />
+                    {categoryArray.map((category, i) => (
+                        <MoviesListContainer key={i} category={category.category} movies={category.titles} />
+                    ))}
+                    <MoviesListContainer category="Trending" movies={trendingMovies} />
+
                 </View>
-            <Button onPress={() => navigation.navigate("Detail")}>
-                <Text>Go to Detail</Text>
-            </Button>
-            </View>
+                <Button onPress={() => navigation.navigate("Detail")}>
+                    <Text>Go to Detail</Text>
+                </Button>
+            </ScrollView>
         </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: "center",
-        alignItems: 'center',
+        // justifyContent: "center",
+        // alignItems: 'center',
         padding: 10,
     },
     inputContainer: {
@@ -93,7 +128,7 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         width: "100%",
-        backgroundColor:backgroundColor
+        backgroundColor: backgroundColor
     },
     button: {
         backgroundColor: secondaryColor,

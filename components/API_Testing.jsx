@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 50,
     width: "100%",
+    backgroundColor: "#2a2a2a",
   },
   inputContainer: {
     width: "50%",
@@ -91,6 +92,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     width: "100%", // Adjust the width of the TextInput
+    padding: 10,
   },
   iconButton: {
     marginLeft: 10, // Adjust the spacing between TextInput and IconButton

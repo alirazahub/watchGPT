@@ -13,14 +13,18 @@ const useApiCall = () => {
       body: JSON.stringify({
         model: "text-davinci-003",
         prompt:
-          "recommend 5 movies similar to this movie, provide comma seperated list:\n\n" +
-          text +
-          "",
-        temperature: 1,
-        max_tokens: 100,
+          "Recommend movies based on the user's prompt:\n\n" +
+          "User Prompt: " + text + "\n" +
+          "Additional Recommendations: recommended, most watched movies\n" +
+          "Output Format: Only include the title of the recommendation. Separate each category with a semicolon (;).\n" +
+          "Please provide a minimum of 5 diverse recommendations for each category, without any additional text.\n" +
+          "To ensure diversity, try to include a mix of popular and lesser-known movies.\n" +
+          "Avoid repetitive recommendations by considering different genres, directors, or release years.\n",
+        temperature: 0.8,
+        max_tokens: 150,
         top_p: 1.0,
-        frequency_penalty: 0.8,
-        presence_penalty: 0.0,
+        frequency_penalty: 0.2,
+        presence_penalty: 0.5,
       }),
     };
 
