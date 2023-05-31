@@ -1,14 +1,23 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import LoginScreen from './LoginScreen';
 import RegisterScreen from './RegisterScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from '../Navigation';
 import { primaryColor,secondaryColor } from '../../colors'
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const Stack = createNativeStackNavigator();
 
-const Authentication = () => {
+const Authentication = ({navigation}) => {
+    useEffect(() => {
+        AsyncStorage.getItem('user')
+            .then((user) => {
+                if (user) {
+                    navigation.navigate('Navigation', { screen: 'HomeScreen' })
+                }
+            })
+    }, [])
     return (
         <NavigationContainer>
             <Stack.Navigator
