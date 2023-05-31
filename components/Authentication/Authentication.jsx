@@ -11,12 +11,16 @@ const Stack = createNativeStackNavigator();
 
 const Authentication = ({navigation}) => {
     useEffect(() => {
-        AsyncStorage.getItem('user')
-            .then((user) => {
-                if (user) {
-                    navigation.navigate('Navigation', { screen: 'HomeScreen' })
-                }
-            })
+        _retrieveData = async () => {
+            try {
+              await AsyncStorage.getItem('user');
+              if (value !== null) {
+                navigation.navigate('Navigation', { screen: 'HomeScreen' })
+              }
+            } catch (error) {
+                console.log(error)
+            }
+          };
     }, [])
     return (
         <NavigationContainer>

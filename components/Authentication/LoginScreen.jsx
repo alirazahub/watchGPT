@@ -3,7 +3,7 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import LogoImage from '../../assets/black-logo.png';
 import { backgroundColor } from '../../colors';
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import {AsyncStorage} from "@react-native-async-storage/async-storage"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebase'
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -14,14 +14,19 @@ const LoginScreen = ({ navigation }) => {
     const [loading,setLoading] = useState(false)
     const auth = getAuth(app);
 
-    
+
     const handleLogin = () => {
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user)
-                AsyncStorage.setItem('user', JSON.stringify(user))
+                _storeData = async () => {
+                    try {
+                      await AsyncStorage.setItem('user', JSON.stringify(user));
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    };
                 setLoading(false)
                 alert('User logged in successfully!')
                 navigation.navigate('Navigation', { screen: 'HomeScreen' })
