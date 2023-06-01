@@ -102,9 +102,15 @@ function MovieDetail({ navigation, route }) {
             <FontAwsome name="star" size={25} color="#FFD700" />
           </Text>
           <View style={styles.movieGenre}>
-            {moviesData.genres.map((genre, index) => (
-              <Text key={index} style={styles.movieGenreText}>{genre.name}</Text>
-            ))}
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              data={moviesData.genres}
+              renderItem={({ item }) => (
+                  <Text style={styles.movieGenreText}>{item.name}</Text>
+              )}
+              horizontal={true}
+              keyExtractor={(item,index) => index.toString()}
+            />
 
           </View>
         </View>
@@ -176,7 +182,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   movieContainer: {
-    marginTop: 20,
     width: "100%",
     height: 400,
     justifyContent: "center",
@@ -184,30 +189,40 @@ const styles = StyleSheet.create({
     position: "relative",
     padding: 10,
   },
+  moviePoster: {
+    width: "100%",
+    height: "100%",
+  },
   movieImage: {
-    marginTop: 20,
-    height: 450,
-    width: 450,
+    height: 520,
+    resizeMode: "contain",
   },
   overlay: {
     position: "absolute",
-    top: 333,
-    left: 30,
+    height: 674,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    width: "100%",
   },
   movieTitle: {
     color: "#fff",
     fontSize: 34,
     fontWeight: "bold",
+    top: 500,
+    left: 10,
   },
   movieYear: {
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+    top: 500,
+    left: 10,
   },
   movieRating: {
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+    top: 500,
+    left: 10,
   },
   movieDetails: {
     padding: 10,
@@ -217,6 +232,8 @@ const styles = StyleSheet.create({
   movieGenre: {
     flexDirection: "row",
     marginTop: 10,
+    top: 500,
+    left: 10,
   },
   movieGenreText: {
     color: "#fff",
@@ -230,7 +247,7 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   About: {
-    marginTop: 60,
+    marginTop: 110,
     color: secondaryColor,
     fontSize: 26,
     fontWeight: "bold",
