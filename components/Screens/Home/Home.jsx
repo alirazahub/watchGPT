@@ -105,9 +105,6 @@ function Home({ navigation }) {
                     <MoviesListContainer category="Trending" movies={trendingMovies} />
 
                 </View>
-                <Button onPress={() => navigation.navigate("Detail")}>
-                    <Text>Go to Detail</Text>
-                </Button>
             </ScrollView>
         </KeyboardAvoidingView>
     );

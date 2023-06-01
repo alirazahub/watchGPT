@@ -6,7 +6,7 @@ import { backgroundColor } from '../../../colors'
 const Favourites = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text>Favourite Movies</Text>
+            <Text>History</Text>
             <Button onPress={() => navigation.navigate("Detail")}>
                 <Text>Go to Detail</Text>
             </Button>
