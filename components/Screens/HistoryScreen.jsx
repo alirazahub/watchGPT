@@ -1,19 +1,19 @@
 import React from 'react'
-import Favourites from './Favourites/Favourites';
-import Detail from './Favourites/Detail';
+import Detail from './History/Detail';
+import History from './History/History';
 import { primaryColor,secondaryColor } from '../../colors'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const FavouritesScreen = () => {
+const HistoryScreen = () => {
     return (
         <Stack.Navigator
         screenOptions={{
             animation: "slide_from_right",
         }}
         >
-            <Stack.Screen name="Favourites" component={Favourites} options={{
+            <Stack.Screen name="History" component={History} options={{
                 headerStyle: {
                     backgroundColor: primaryColor,
                     height: 80,
@@ -32,4 +32,4 @@ const FavouritesScreen = () => {
     )
 }
 
-export default FavouritesScreen
+export default HistoryScreen

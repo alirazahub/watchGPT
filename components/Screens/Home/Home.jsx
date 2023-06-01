@@ -84,7 +84,8 @@ function Home({ navigation }) {
 
     return (
         <KeyboardAvoidingView>
-
+           
+            
             <ScrollView style={styles.container} contentContainerStyle={["alignItems", "justifyContent"]}>
                 <View style={styles.inputContainer}>
                     <TextInput

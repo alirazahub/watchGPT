@@ -11,6 +11,7 @@ import {
 } from "./API/api";
 import { backgroundColor, primaryColor, secondaryColor } from '../colors';
 // import { AiFillStar } from 'react-icons/ai';
+import Spinner from "react-native-loading-spinner-overlay/lib";
 
 
 const MoviesListContainer = ({ category, movies }) => {
@@ -62,16 +63,14 @@ const MoviesListContainer = ({ category, movies }) => {
     fetchMoviesData();
   }, [movies]);
 
-  if (isLoading) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>
+      <Spinner
+        visible={isLoading}
+        textContent={'Loading...'}
+        textStyle={styles.spinnerTextStyle}
+      />
       <Text style={{ color: primaryColor, fontSize: 26, fontWeight: "bold", }}>{category}</Text>
       <MoviesList moviesData={moviesData} />
     </View>
