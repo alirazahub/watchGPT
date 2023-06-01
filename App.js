@@ -7,7 +7,7 @@ import SearchContext from './contexts/SearchContext';
 import Home from './components/Screens/Home/Home';
 import UserAuthContext from './contexts/UserAuthContext';
 import { storeSearchQuery, getSearchHistory } from './customHooks/useSearchHistory';
-import Detail from './components/Screens/Favourites/Detail';
+import Detail from './components/Screens/History/Detail';
 
 const theme = {
   ...DefaultTheme,
