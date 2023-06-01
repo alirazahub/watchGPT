@@ -1,8 +1,13 @@
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import MoviesContext from './contexts/MoviesContext';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Authentication from './components/Authentication/Authentication';
-import { primaryColor,secondaryColor } from './colors';
+import { primaryColor, secondaryColor } from './colors';
+import SearchContext from './contexts/SearchContext';
+import Home from './components/Screens/Home/Home';
+import UserAuthContext from './contexts/UserAuthContext';
+import { storeSearchQuery, getSearchHistory } from './customHooks/useSearchHistory';
+import Detail from './components/Screens/Favourites/Detail';
 
 const theme = {
   ...DefaultTheme,
@@ -14,13 +19,28 @@ const theme = {
 };
 export default function App() {
   const [movies, setMovies] = useState([]);
+  const [searchHistory, setSearchHistory] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      getSearchHistory(user.uid).then((history) => {
+        setSearchHistory(history);
+      });
+    }
+  }, [user]);
 
   return (
-    <MoviesContext.Provider value={{ movies, setMovies}}>
-      <PaperProvider theme={theme}>
-        <Authentication />
-      </PaperProvider>
-    </MoviesContext.Provider>
+    <UserAuthContext.Provider value={{ user, setUser }}>
+      <SearchContext.Provider value={{ searchHistory, setSearchHistory }}>
+        <MoviesContext.Provider value={{ movies, setMovies }}>
+          <PaperProvider theme={theme}>
+            <Authentication />
+            {/* <Home /> */}
+          </PaperProvider>
+        </MoviesContext.Provider>
+      </SearchContext.Provider>
+    </UserAuthContext.Provider>
   );
 }
 

@@ -9,7 +9,7 @@ import {
   getActors,
   getImage,
 } from "./API/api";
-import { backgroundColor, primaryColor } from '../colors';
+import { backgroundColor, primaryColor, secondaryColor } from '../colors';
 // import { AiFillStar } from 'react-icons/ai';
 
 
@@ -54,7 +54,7 @@ const MoviesListContainer = ({ category, movies }) => {
     };
 
     const fetchMoviesData = async () => {
-      console.log(movies)
+      // console.log(movies)
       const data = await fetchData(movies);
       setMoviesData(data);
     };
@@ -72,7 +72,7 @@ const MoviesListContainer = ({ category, movies }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ color: primaryColor, fontSize: 20, fontWeight: 'bold', margin: 10 }}>{category}</Text>
+      <Text style={{ color: primaryColor, fontSize: 26, fontWeight: "bold", }}>{category}</Text>
       <MoviesList moviesData={moviesData} />
     </View>
   );

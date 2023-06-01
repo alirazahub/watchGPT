@@ -1,18 +1,20 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import LogoImage from '../../assets/black-logo.png';
 import { backgroundColor } from '../../colors';
-import {AsyncStorage} from "@react-native-async-storage/async-storage"
+import { AsyncStorage } from "@react-native-async-storage/async-storage"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebase'
 import Spinner from 'react-native-loading-spinner-overlay';
+import UserAuthContext from '../../contexts/UserAuthContext';
 
 const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const auth = getAuth(app);
+    const { user, setUser } = useContext(UserAuthContext)
 
 
     const handleLogin = () => {
@@ -20,13 +22,14 @@ const LoginScreen = ({ navigation }) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                setUser(user)
                 _storeData = async () => {
                     try {
-                      await AsyncStorage.setItem('user', JSON.stringify(user));
+                        await AsyncStorage.setItem('user', JSON.stringify(user));
                     } catch (error) {
                         console.log(error)
                     }
-                    };
+                };
                 setLoading(false)
                 alert('User logged in successfully!')
                 navigation.navigate('Navigation', { screen: 'HomeScreen' })
@@ -46,15 +49,15 @@ const LoginScreen = ({ navigation }) => {
             </View>
 
             <TextInput
-            mode='outlined'
-            label="Email"
-            value={email}
-            onChangeText={setEmail}
-            style={styles.input}
+                mode='outlined'
+                label="Email"
+                value={email}
+                onChangeText={setEmail}
+                style={styles.input}
             />
 
             <TextInput
-            mode='outlined'
+                mode='outlined'
                 label="Password"
                 value={password}
                 secureTextEntry
@@ -71,10 +74,10 @@ const LoginScreen = ({ navigation }) => {
                 <Text style={styles.link}>Don't have an account? Sign up</Text>
             </TouchableOpacity>
             <Spinner
-                    visible={loading}
-                    textContent={'Loading...'}
-                    textStyle={styles.spinnerTextStyle}
-                />
+                visible={loading}
+                textContent={'Loading...'}
+                textStyle={styles.spinnerTextStyle}
+            />
         </View>
     );
 };
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
-        backgroundColor:backgroundColor
+        backgroundColor: backgroundColor
     },
     logoContainer: {
         alignItems: 'center',
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
     input: {
         marginBottom: 16,
         width: '100%',
-        backgroundColor:backgroundColor,
+        backgroundColor: backgroundColor,
     },
     button: {
         marginTop: 16,

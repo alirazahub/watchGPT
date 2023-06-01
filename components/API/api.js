@@ -17,7 +17,7 @@ const getByName = async (name) => {
         throw new Error('Error: ' + err);
     }
 }
-const getRecommendations = (id) => {
+const getRecommendations = async (id) => {
     const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`;
     const options = {
         method: 'GET',
@@ -27,10 +27,13 @@ const getRecommendations = (id) => {
         }
     };
 
-    fetch(url, options)
-        .then(res => res.json())
-        .then(json => (json.results))
-        .catch(err => console.error('error:' + err));
+    try {
+        const res = await fetch(url, options);
+        const data = await res.json();
+        return data.results;
+    } catch (err) {
+        throw new Error('Error: ' + err);
+    }
 }
 
 const getReviews = (id) => {

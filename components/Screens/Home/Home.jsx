@@ -7,6 +7,9 @@ import MoviesListContainer from "../../MoviesListContainer";
 import { primaryColor, secondaryColor, backgroundColor } from '../../../colors'
 import { getTrendingMovies } from "../../API/api";
 import MoviesList from "../../MoviesList";
+import SearchContext from "../../../contexts/SearchContext";
+import { storeSearchQuery, getSearchHistory } from "../../../customHooks/useSearchHistory";
+import UserAuthContext from "../../../contexts/UserAuthContext";
 
 function Home({ navigation }) {
 
@@ -15,6 +18,8 @@ function Home({ navigation }) {
     const { movies, setMovies } = useContext(MoviesContext);
     const [categoryArray, setCategoryArray] = useState([]);
     const [trendingMovies, setTrendingMovies] = useState([]);
+    const { searchHistory, setSearchHistory } = useContext(SearchContext);
+    const { user, setUser } = useContext(UserAuthContext)
 
     const { fetchData } = useApiCall();
 
@@ -48,9 +53,10 @@ function Home({ navigation }) {
         if (new_text.length > 0) {
             try {
                 const newData = await fetchData(new_text);
-                console.log(newData)
+                // console.log(newData)
                 setLoading(false);
                 setCategoryArray(addCategoriesToArray(newData));
+                storeSearchQuery(user.uid, { prompt: new_text, output: addCategoriesToArray(newData) })
             } catch (error) {
                 alert("Error fetching data");
                 console.error(error);
@@ -105,9 +111,6 @@ function Home({ navigation }) {
                     <MoviesListContainer category="Trending" movies={trendingMovies} />
 
                 </View>
-                <Button onPress={() => navigation.navigate("Detail")}>
-                    <Text>Go to Detail</Text>
-                </Button>
             </ScrollView>
         </KeyboardAvoidingView>
     );

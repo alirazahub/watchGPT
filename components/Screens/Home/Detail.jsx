@@ -5,7 +5,9 @@ import { primaryColor, secondaryColor } from "../../../colors";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
 import { useRoute, useNavigation } from '@react-navigation/native';
 import useMovieData from "../../../customHooks/useMovieData";
-import { getDetails, getActors } from "../../API/api";
+import { getDetails, getActors, getRecommendations } from "../../API/api";
+import MovieList from "../../MoviesList";
+import MoviesListContainer from "../../MoviesListContainer";
 
 function MovieDetail({ navigation, route }) {
 
@@ -18,11 +20,13 @@ function MovieDetail({ navigation, route }) {
         ...movie,
         runtime: 0,
         cast: [],
+        recommended: [],
       };
 
-      const [details, cast] = await Promise.all([
+      const [details, cast, recommendedMovies] = await Promise.all([
         getMovieDetails(movie.id),
         getMovieCast(movie.id),
+        getMovieRecommendations(movie.id),
       ]);
 
       if (details) {
@@ -32,6 +36,21 @@ function MovieDetail({ navigation, route }) {
 
       if (cast) {
         movieData.cast = cast.cast.slice(0, 5);
+      }
+
+      if (recommendedMovies) {
+        movieData.recommended = recommendedMovies.slice(0, 5).map((recommendedMovie) => ({
+          title: recommendedMovie.original_title,
+          id: recommendedMovie.id,
+          overview: recommendedMovie.overview,
+          poster: `https://image.tmdb.org/t/p/w500${recommendedMovie.poster_path}`,
+          backdrop: `https://image.tmdb.org/t/p/w500${recommendedMovie.backdrop_path}`,
+          rating: recommendedMovie.vote_average.toFixed(1),
+          release: recommendedMovie.release_date.slice(0, 4),
+          genres: recommendedMovie.genre_ids,
+          language: recommendedMovie.original_language,
+        }));
+        (movieData.recommended)
       }
 
       return movieData;
@@ -68,10 +87,24 @@ function MovieDetail({ navigation, route }) {
     }
   };
 
+  const getMovieRecommendations = async (movieId) => {
+    setLoading(true);
+    try {
+      const recommendations = await getRecommendations(movieId);
+      setLoading(false);
+      // console.log(recommendations)
+      return recommendations;
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+      return null;
+    }
+  }
+
   useEffect(() => {
     const getMovieData = async () => {
       const movieData = await getCompleteMovieData(route.params.movie);
-      console.log(movieData)
+      // console.log(movieData)
       setMoviesData(movieData);
     }
 
@@ -135,6 +168,8 @@ function MovieDetail({ navigation, route }) {
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
+      <Text style={styles.movieCastTitle}>Recommended</Text>
+      <MovieList moviesData={moviesData.recommended} />
 
     </ScrollView>
   );
