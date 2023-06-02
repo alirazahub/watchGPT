@@ -10,7 +10,7 @@ const MoviesList = ({ moviesData }) => {
     const handleMoviePress = (movie) => {
         navigation.navigate('Detail', { movie });
     };
-
+    
     return (
         <FlatList
             showsHorizontalScrollIndicator={false}

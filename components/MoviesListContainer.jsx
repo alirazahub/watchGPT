@@ -62,7 +62,7 @@ const MoviesListContainer = ({ category, movies }) => {
 
     fetchMoviesData();
   }, [movies]);
-
+  
 
   return (
     <View style={styles.container}>
