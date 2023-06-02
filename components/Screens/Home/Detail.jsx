@@ -139,10 +139,10 @@ function MovieDetail({ navigation, route }) {
               showsHorizontalScrollIndicator={false}
               data={moviesData.genres}
               renderItem={({ item }) => (
-                  <Text style={styles.movieGenreText}>{item.name}</Text>
+                <Text style={styles.movieGenreText}>{item.name}</Text>
               )}
               horizontal={true}
-              keyExtractor={(item,index) => index.toString()}
+              keyExtractor={(item, index) => index.toString()}
             />
 
           </View>
@@ -174,10 +174,10 @@ function MovieDetail({ navigation, route }) {
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
-      <Text style={[styles.movieCastTitle,{margin:10}]}>Recommendations on the basis of Selected Movie</Text>
-      <View style={{marginHorizontal:10}}>
+      <Text style={[styles.movieCastTitle, { margin: 10 }]}>You may also like</Text>
+      <View style={{ marginHorizontal: 10 }}>
 
-      <MovieList moviesData={moviesData.recommended} />
+        <MovieList moviesData={moviesData.recommended} />
 
       </View>
     </ScrollView>

@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { View, StyleSheet, Text, FlatList, KeyboardAvoidingView, ScrollView } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-import useApiCall from "../../utilities/GetDataFromChatGPT";
+import useApiCall from "../../../utilities/GetDataFromChatGPT";
 import MoviesContext from "../../../contexts/MoviesContext";
 import MoviesListContainer from "../../MoviesListContainer";
 import { primaryColor, secondaryColor, backgroundColor } from '../../../colors'
-import { getTrendingMovies } from "../../API/api";
+import { getTrendingMovies } from "../../../API/api";
 import MoviesList from "../../MoviesList";
 import SearchContext from "../../../contexts/SearchContext";
 import { storeSearchQuery, getSearchHistory } from "../../../customHooks/useSearchHistory";
@@ -84,8 +84,8 @@ function Home({ navigation }) {
 
     return (
         <KeyboardAvoidingView>
-           
-            
+
+
             <ScrollView style={styles.container} contentContainerStyle={["alignItems", "justifyContent"]}>
                 <View style={styles.inputContainer}>
                     <TextInput
@@ -107,7 +107,7 @@ function Home({ navigation }) {
                 </View>
                 <View style={styles.movieContainer}>
                     {categoryArray.map((category, i) => (
-                        <MoviesListContainer key={i} category={category.category} movies={category.titles} />
+                        <MoviesListContainer key={i} category={"Watch"} movies={category.titles} />
                     ))}
                     <MoviesListContainer category="Trending" movies={trendingMovies} />
 

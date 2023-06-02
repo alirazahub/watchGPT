@@ -15,9 +15,8 @@ const useApiCall = () => {
         prompt:
           "Recommend movies based on the user's prompt:\n\n" +
           "User Prompt: " + text + "\n" +
-          "Additional Recommendations: recommended, most watched movies\n" +
-          "Output Format: Only include the title of the recommendation. Separate each category with a semicolon (;).\n" +
-          "Please provide a minimum of 5 diverse recommendations for each category, without any additional text.\n" +
+          "Output Format: Only include the title of the recommendation. Separate each with a semicolon (;).\n" +
+          "Please provide a minimum of 5 diverse recommendations , without any additional text.\n" +
           "To ensure diversity, try to include a mix of popular and lesser-known movies.\n" +
           "Avoid repetitive recommendations by considering different genres, directors, or release years.\n",
         temperature: 0.8,

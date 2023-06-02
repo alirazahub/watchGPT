@@ -9,12 +9,12 @@ import UserAuthContext from '../../../contexts/UserAuthContext'
 const History = () => {
     const { searchHistory, setSearchHistory } = useContext(SearchContext)
     const { user, setUser } = useContext(UserAuthContext)
-    // console.log(searchHistory)
 
     useEffect(() => {
         getSearchHistory(user.uid).then((history) => {
             setSearchHistory(history);
         })
+
     }, [])
 
     return (
