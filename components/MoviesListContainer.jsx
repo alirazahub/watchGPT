@@ -80,7 +80,7 @@ const MoviesListContainer = ({ category, movies }) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 350,
+    // height: 500,
     backgroundColor: backgroundColor,
     marginBottom: 10,
     marginHorizontal: 5,

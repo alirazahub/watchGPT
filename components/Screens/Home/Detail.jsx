@@ -131,8 +131,9 @@ function MovieDetail({ navigation, route }) {
         <View style={styles.overlay}>
           <Text style={styles.movieTitle}>{moviesData.title}</Text>
           <Text style={styles.movieYear}>{moviesData.release}</Text>
-          <Text style={styles.movieRating}>{moviesData.rating}
+          <Text style={styles.movieRating}>
             <FontAwsome name="star" size={25} color="#FFD700" />
+            {moviesData.rating}
           </Text>
           <View style={styles.movieGenre}>
             <FlatList
@@ -261,6 +262,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     top: 500,
     left: 10,
+
   },
   movieDetails: {
     padding: 10,
