@@ -23,7 +23,7 @@ const RegisterScreen = ({ navigation }) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                displayName: user.displayName
+                user.displayName = name
                 setLoading(false)
                 alert('User registered successfully!')
                 navigation.navigate('Login')
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     input: {
         width: '90%',
         margin: 10,
+        backgroundColor: backgroundColor,
     },
     button: {
         width: '90%',

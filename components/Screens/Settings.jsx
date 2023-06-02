@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { backgroundColor, primaryColor, secondaryColor } from '../../colors'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import UserAuthContext from '../../contexts/UserAuthContext';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('Ali Raza');
-  const [email, setEmail] = useState('aliraza@gmail.com');
+  const [email, setEmail] = useState('');
   const [editingName, setEditingName] = useState(false);
   const [editingEmail, setEditingEmail] = useState(false);
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const {user} = useContext(UserAuthContext);
 
+  useEffect(() => {
+    if (user) {
+      setName(user.displayName);
+      setEmail(user.email);
+    }
+  }, [user]);
   const updateName = () => {
     if (newName.trim() !== '') {
       setName(newName);

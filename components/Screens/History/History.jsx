@@ -5,17 +5,21 @@ import SearchContext from '../../../contexts/SearchContext'
 import MoviesListContainer from '../../MoviesListContainer'
 import { getSearchHistory } from '../../../customHooks/useSearchHistory'
 import UserAuthContext from '../../../contexts/UserAuthContext'
+import { useIsFocused } from '@react-navigation/native';
 
 const History = () => {
-    const { searchHistory, setSearchHistory } = useContext(SearchContext)
-    const { user, setUser } = useContext(UserAuthContext)
+    const {user} = useContext(UserAuthContext);
+const {searchHistory, setSearchHistory} = useContext(SearchContext);
+const isFocused = useIsFocused();
 
-    useEffect(() => {
-        getSearchHistory(user.uid).then((history) => {
-            setSearchHistory(history);
-        })
+  useEffect(() => {
+    getSearchHistory(user.uid).then((history) => {
+        setSearchHistory(history);
+    })
 
-    }, [])
+}, [isFocused])
+
+    
 
     return (
         <ScrollView contentContainerStyle={["alignItems", "justifyContent"]}>

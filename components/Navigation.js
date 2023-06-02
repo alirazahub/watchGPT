@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useContext} from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwsome from 'react-native-vector-icons/FontAwesome';
@@ -7,13 +7,14 @@ import HistoryScreen from './Screens/HistoryScreen';
 import Settings from './Screens/Settings';
 import HomeScreen from './Screens/HomeScreen';
 import { primaryColor,secondaryColor } from '../colors';
+
 const size = 35;
 const Tab = createBottomTabNavigator();
 
 
 
 const Navigation = () => {
-  
+
   return (
     <Tab.Navigator
       initialRouteName="HomeScreen"
@@ -51,7 +52,8 @@ const Navigation = () => {
       })}
     >
       <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="HistoryScreen" component={HistoryScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="HistoryScreen"  component={HistoryScreen} options={
+        { headerShown: false }} />
       <Tab.Screen name="Settings" component={Settings} options={{
         headerStyle: {
           backgroundColor: primaryColor,
