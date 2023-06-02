@@ -174,9 +174,12 @@ function MovieDetail({ navigation, route }) {
           keyExtractor={(item) => item.id.toString()}
         />
       </View>
-      <Text style={styles.movieCastTitle}>Recommended</Text>
+      <Text style={[styles.movieCastTitle,{margin:10}]}>Recommendations on the basis of Selected Movie</Text>
+      <View style={{marginHorizontal:10}}>
+
       <MovieList moviesData={moviesData.recommended} />
 
+      </View>
     </ScrollView>
   );
 }

@@ -4,8 +4,8 @@ import { backgroundColor, primaryColor, secondaryColor } from '../../colors'
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const ProfileScreen = () => {
-  const [name, setName] = useState('John Doe');
-  const [email, setEmail] = useState('johndoe@example.com');
+  const [name, setName] = useState('Ali Raza');
+  const [email, setEmail] = useState('aliraza@gmail.com');
   const [editingName, setEditingName] = useState(false);
   const [editingEmail, setEditingEmail] = useState(false);
   const [newName, setNewName] = useState('');

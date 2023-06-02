@@ -14,7 +14,7 @@ const MoviesList = ({ moviesData }) => {
         <FlatList
             showsHorizontalScrollIndicator={false}
             data={moviesData}
-            keyExtractor={(movie) => movie.id.toString()}
+            keyExtractor={(movie,index) => index.toString()}
             horizontal={true}
             renderItem={({ item: movie }) => (
                 <TouchableOpacity onPress={() => handleMoviePress(movie)}>
