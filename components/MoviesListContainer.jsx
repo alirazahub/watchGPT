@@ -8,7 +8,7 @@ import {
   getReviews,
   getActors,
   getImage,
-} from "./API/api";
+} from "../API/api";
 import { backgroundColor, primaryColor, secondaryColor } from '../colors';
 // import { AiFillStar } from 'react-icons/ai';
 import Spinner from "react-native-loading-spinner-overlay/lib";

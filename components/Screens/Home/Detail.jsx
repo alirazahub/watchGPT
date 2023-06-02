@@ -5,7 +5,7 @@ import { primaryColor, secondaryColor } from "../../../colors";
 import FontAwsome from "react-native-vector-icons/FontAwesome";
 import { useRoute, useNavigation } from '@react-navigation/native';
 import useMovieData from "../../../customHooks/useMovieData";
-import { getDetails, getActors, getRecommendations } from "../../API/api";
+import { getDetails, getActors, getRecommendations } from "../../../API/api";
 import MovieList from "../../MoviesList";
 import MoviesListContainer from "../../MoviesListContainer";
 

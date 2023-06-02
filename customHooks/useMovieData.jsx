@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getByName, getDetails, getActors } from '../components/API/api';
+import { getByName, getDetails, getActors } from '../API/api';
 
 function useMovieData(movieName) {
     const [loading, setLoading] = useState(false);
