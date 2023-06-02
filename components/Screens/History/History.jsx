@@ -20,10 +20,10 @@ const History = () => {
     return (
         <ScrollView contentContainerStyle={["alignItems", "justifyContent"]}>
             <Text style={{ color: secondaryColor, fontSize: 26, fontWeight: "bold", marginLeft: 10 }}>History</Text>
-            <View style={styles.movieContainer}>
+            <View style={styles.movieContainer} >
                 {searchHistory.map((search, i) => (
                     <MoviesListContainer key={i} category={"Showing results for: " + search.prompt} movies={search.output[0].titles} />
-                )).reverse()}
+                )).reverse().slice(0, 5)}
             </View>
         </ScrollView>
     )
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 
     movieContainer: {
         width: "100%",
+        marginBottom: 60,
     },
 });
 export default History

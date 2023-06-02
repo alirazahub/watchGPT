@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     },
     movieContainer: {
         width: "100%",
+        marginBottom: 70,
     }
 });
 

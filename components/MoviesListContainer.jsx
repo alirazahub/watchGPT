@@ -71,7 +71,7 @@ const MoviesListContainer = ({ category, movies }) => {
         textContent={'Loading...'}
         textStyle={styles.spinnerTextStyle}
       />
-      <Text style={{ color: primaryColor, fontSize: 26, fontWeight: "bold", }}>{category}</Text>
+      <Text style={{ color: primaryColor, fontSize: 26, fontWeight: "bold", marginBottom: 5, }}>{category}</Text>
       <MoviesList moviesData={moviesData} />
     </View>
   );
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     height: 350,
     backgroundColor: backgroundColor,
     marginBottom: 10,
+    marginHorizontal: 5,
   },
 });
 

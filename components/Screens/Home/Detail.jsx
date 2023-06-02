@@ -175,7 +175,7 @@ function MovieDetail({ navigation, route }) {
         />
       </View>
       <Text style={[styles.movieCastTitle, { margin: 10 }]}>You may also like</Text>
-      <View style={{ marginHorizontal: 10 }}>
+      <View style={{ marginBottom: 50, marginHorizontal: 5, }}>
 
         <MovieList moviesData={moviesData.recommended} />
 
