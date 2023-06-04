@@ -1,10 +1,12 @@
+import dotenv from 'dotenv';
+dotenv.config();
 const getByName = async (name) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${name}`;
     const options = {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWY2YzI3ODM1ODVmNWIwMDYxZTE4NDM2YWYyZGRiOSIsInN1YiI6IjYyZDQyMGRiNTQzN2Y1MDA1MGYyNjc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.52ccvI5cFvr-Xv6ZH_Lkfdzx7VW26KTjWgQuGjPr0pc'
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
 
@@ -23,7 +25,7 @@ const getRecommendations = async (id) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWY2YzI3ODM1ODVmNWIwMDYxZTE4NDM2YWYyZGRiOSIsInN1YiI6IjYyZDQyMGRiNTQzN2Y1MDA1MGYyNjc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.52ccvI5cFvr-Xv6ZH_Lkfdzx7VW26KTjWgQuGjPr0pc'
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
 
@@ -42,7 +44,7 @@ const getReviews = (id) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWY2YzI3ODM1ODVmNWIwMDYxZTE4NDM2YWYyZGRiOSIsInN1YiI6IjYyZDQyMGRiNTQzN2Y1MDA1MGYyNjc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.52ccvI5cFvr-Xv6ZH_Lkfdzx7VW26KTjWgQuGjPr0pc'
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
 
@@ -58,7 +60,7 @@ const getActors = async (id) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWY2YzI3ODM1ODVmNWIwMDYxZTE4NDM2YWYyZGRiOSIsInN1YiI6IjYyZDQyMGRiNTQzN2Y1MDA1MGYyNjc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.52ccvI5cFvr-Xv6ZH_Lkfdzx7VW26KTjWgQuGjPr0pc'
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
 
@@ -80,7 +82,7 @@ const getDetails = async (id) => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWY2YzI3ODM1ODVmNWIwMDYxZTE4NDM2YWYyZGRiOSIsInN1YiI6IjYyZDQyMGRiNTQzN2Y1MDA1MGYyNjc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.52ccvI5cFvr-Xv6ZH_Lkfdzx7VW26KTjWgQuGjPr0pc'
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
     try {
@@ -97,7 +99,7 @@ const getTrendingMovies = async () => {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNWY2YzI3ODM1ODVmNWIwMDYxZTE4NDM2YWYyZGRiOSIsInN1YiI6IjYyZDQyMGRiNTQzN2Y1MDA1MGYyNjc3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.52ccvI5cFvr-Xv6ZH_Lkfdzx7VW26KTjWgQuGjPr0pc'
+            Authorization: `Bearer ${TMDB_API_KEY}`
         }
     };
 

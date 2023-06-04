@@ -1,4 +1,6 @@
 import { useState } from "react";
+import dotevn from "dotenv";
+dotevn.config();
 
 const useApiCall = () => {
   const [data, setData] = useState([]);
@@ -8,7 +10,7 @@ const useApiCall = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
         model: "text-davinci-003",
