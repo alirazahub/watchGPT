@@ -1,6 +1,6 @@
 # watchGPT
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/your-username/watchGPT/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/alirazahub/watchGPT/blob/main/LICENSE)
 
 watchGPT is a cutting-edge React Native mobile application that revolutionizes the way users discover and choose movies to watch. It utilizes the power of CHATGPT, an advanced language model developed by OpenAI, and the extensive database of The Movie Database (TMDB) to provide personalized movie recommendations.
 
