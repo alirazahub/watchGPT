@@ -1,6 +1,5 @@
 import { useState } from "react";
-import dotevn from "dotenv";
-dotevn.config();
+import { REACT_APP_OPENAI_API_KEY } from "../env";
 
 const useApiCall = () => {
   const [data, setData] = useState([]);
@@ -10,7 +9,7 @@ const useApiCall = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+        Authorization: `Bearer ${REACT_APP_OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
         model: "text-davinci-003",

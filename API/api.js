@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import { TMDB_API_KEY } from "../env";
 const getByName = async (name) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${name}`;
     const options = {
